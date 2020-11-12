@@ -15,6 +15,7 @@ def parse_messages():
     STORAGE_CONNECTION_STRING = os.environ['AZURE_STORAGE_CONNECTION_STRING']
     STORAGE_CONTAINER_NAME = os.environ['AZURE_STORAGE_CONTAINER_NAME']
     # CLUSTER_IP = os.environ['CLUSTER_IP']
+    # TSS_URL = os.environ['TSS_URL']
     # TSS_API_KEY = os.environ['TSS_API_KEY']
     # TSS_API_SECRET = os.environ['TSS_API_SECRET']
 
