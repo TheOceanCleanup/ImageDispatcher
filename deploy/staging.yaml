@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: iridium-directip-parser
+  namespace: staging
+  labels:
+    app: iridium-directip-parser
+spec:
+  selector:
+    matchLabels:
+      app: iridium-directip-parser
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: iridium-directip-parser
+    spec:
+      containers:
+      - name: iridium-directip-parser
+        image: tocacr.azurecr.io/iridium-directip-parser:1.0.4
+        env:
+        - name: LOGLEVEL
+          value: DEBUG
+        - name: SB_CONNECTION
+          valueFrom:
+            secretKeyRef:
+              name: tss-servicebus
+              key: connection_string
+        - name: DB_CONNECTION
+          valueFrom:
+            secretKeyRef:
+              name: database
+              key: connection_string
+        envFrom:
+        - configMapRef:
+            name: iridium-directip-parser-env
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+   name: iridium-directip-parser-env
+   namespace: staging
+data:
+  SB_TOPIC_NAME: "gtts-5000"
+  SB_SUBSCRIPTION_NAME: "gtts-5000-subscription"
