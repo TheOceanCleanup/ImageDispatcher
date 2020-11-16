@@ -1,7 +1,7 @@
 FROM python:3.7-alpine
 
 # Install build dependencies
-RUN apk update && apk add postgresql-dev gcc python3-dev musl-dev
+RUN apk update && apk add gcc python3-dev musl-dev
 RUN apk add --virtual=build gcc libffi-dev musl-dev openssl-dev make cmake g++
 
 # Install dependencies

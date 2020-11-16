@@ -25,6 +25,8 @@ class Parser:
         for k, v in message['attachments'].items():
             images.append({'filename': k, 'path': v['path']})
 
+        parsed_payload['device_serial_number'] = message['device_serial_number']
+        parsed_payload['timestamp'] = message['timestamp']
         parsed_payload['payload'] = payload
         parsed_payload['image_paths'] = images
 
