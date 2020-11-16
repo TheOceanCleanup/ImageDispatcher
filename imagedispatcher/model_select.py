@@ -17,6 +17,6 @@ def select_service(message):
     """
     # TODO make actual differentation here
     if message["timestamp"].hour < 12:  # Morning only
-        return ("testdeploy1", "yolo_v4", 2)
+        return ("yolo-v4", "yolo_v4", 2)
     else:
-        return ("testdeploy1", "yolo_v4", 2)
+        return ("yolo-v4", "yolo_v4", 2)
