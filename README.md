@@ -4,10 +4,11 @@ This repo implemenets a Service Bus listener that:
 
 - Listens to a topic on a service bus containing messages with a link to images
   on Blob Storage
-- Downloads this image
-- Chooses an Azure ML endpoint based on metadata with the image
-- Offers the image to this Azure ML endpoint, where object detection is applied
-- Submits the result of the object detection to the TimeSeriesStore
+- For each image in the message:
+  - Downloads this image
+  - Chooses an Azure ML endpoint based on metadata with the image
+  - Offers the image to this Azure ML endpoint, where object detection is applied
+  - Submits the result of the object detection to the TimeSeriesStore
 
 # Configuration
 
