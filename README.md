@@ -20,8 +20,7 @@ The following environment variables can/need to be provided
 | SB_CONNECTION | True | Connection string to the Service Bus |
 | SB_TOPIC_NAME | True | Topic on the Service Bus to listen to |
 | SB_SUBSCRIPTION_NAME | True | Subscription on the Service Bus to use |
-| CLUSTER_HOST | True | Entry of the cluster where the endpoints are located.
-                        Should include the schema (eg http://127.0.0.1) |
+| CLUSTER_HOST | True | Entry of the cluster where the endpoints are located. Should include the schema (eg http://127.0.0.1) |
 | TSS_URL | True | URL where the TimeSeriesStore is located |
 | TSS_API_KEY | True | API Key to use when posting to the Time Series Store |
 | TSS_API_SECRET | True | API Secret to use when posting to the Time Series Store |
