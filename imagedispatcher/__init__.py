@@ -66,6 +66,7 @@ def parse_messages():
                     'timestamp':
                         datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S%z"),
                     'payload': {
+                        'message_id': item['id'],
                         'image_path': image['path'],
                         'model_used': {
                             'service': service,

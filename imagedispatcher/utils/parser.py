@@ -29,6 +29,7 @@ class Parser:
         parsed_payload['timestamp'] = message['timestamp']
         parsed_payload['payload'] = payload
         parsed_payload['image_paths'] = images
+        parsed_payload['id'] = message['id']
 
         logger.debug("Parsed message: {}".format(parsed_payload))
 
