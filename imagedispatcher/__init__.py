@@ -90,4 +90,4 @@ def parse_messages():
 
         except Exception as e:
             logger.error(e)
-            # message.failure(e)
+            message.failure(e)
