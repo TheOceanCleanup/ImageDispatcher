@@ -75,7 +75,7 @@ def parse_messages():
                         },
                         'bouding_boxes': result
                     },
-                    'type': 'ai_result',
+                    'type': 'ai-result',
                     'revision': 'v1'
                 }
 
