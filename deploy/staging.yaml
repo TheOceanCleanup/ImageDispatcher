@@ -1,45 +1,60 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: iridium-directip-parser
+  name: image-dispatcher
   namespace: staging
   labels:
-    app: iridium-directip-parser
+    app: image-dispatcher
 spec:
   selector:
     matchLabels:
-      app: iridium-directip-parser
+      app: image-dispatcher
   replicas: 1
   template:
     metadata:
       labels:
-        app: iridium-directip-parser
+        app: image-dispatcher
     spec:
       containers:
-      - name: iridium-directip-parser
-        image: tocacr.azurecr.io/iridium-directip-parser:1.0.4
+      - name: image-dispatcher
+        image: tocacr.azurecr.io/image-dispatcher:1.0.0
         env:
         - name: LOGLEVEL
           value: DEBUG
+        - name: CLUSTER_HOST
+          value: "http://40.69.216.166"
+        - name: TSS_URL
+          value: "https://ts.staging.toc.yt"
         - name: SB_CONNECTION
           valueFrom:
             secretKeyRef:
               name: tss-servicebus
               key: connection_string
-        - name: DB_CONNECTION
+        - name: AZURE_STORAGE_CONNECTION_STRING
           valueFrom:
             secretKeyRef:
-              name: database
+              name: storage-account
               key: connection_string
+        - name: TSS_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: tss-image-dispatcher
+              key: AUTHENTICATION_KEY
+        - name: TSS_API_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: tss-image-dispatcher
+              key: AUTHENTICATION_SECRET
         envFrom:
         - configMapRef:
-            name: iridium-directip-parser-env
+            name: image-dispatcher-env
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
-   name: iridium-directip-parser-env
+   name: image-dispatcher-env
    namespace: staging
 data:
-  SB_TOPIC_NAME: "gtts-5000"
-  SB_SUBSCRIPTION_NAME: "gtts-5000-subscription"
+  SB_TOPIC_NAME: river-image
+  SB_SUBSCRIPTION_NAME: river-image-subscription
+  AZURE_STORAGE_CONTAINER_NAME: attachments

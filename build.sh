@@ -25,15 +25,15 @@ else
   export GIT_STATUS="clean"
 fi
 
-docker build -t iridium-directip-parser .
+docker build -t image-dispatcher .
 
 if [[ $GIT_STATUS == 'clean' ]]; then
   git tag -a $version -m "Tagged release $version"
 
   az login
   az acr login --name tocacr
-  docker tag iridium-directip-parser tocacr.azurecr.io/iridium-directip-parser:$version
-  docker push tocacr.azurecr.io/iridium-directip-parser:$version
+  docker tag image-dispatcher tocacr.azurecr.io/image-dispatcher:$version
+  docker push tocacr.azurecr.io/image-dispatcher:$version
 
   git push --tags
   echo

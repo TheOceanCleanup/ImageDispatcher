@@ -1,14 +1,12 @@
 from typing import Dict
-from datetime import datetime, timedelta
 import logging
-import msgpack
 
 logger = logging.getLogger(__name__)
 
 
 class Parser:
     @staticmethod
-    def parse(message: Dict) -> list:
+    def parse(message: Dict) -> Dict:
         revision = message.get('revision', None)
         if revision == 'v1':
             return Parser._parse_v1(message)
@@ -16,7 +14,7 @@ class Parser:
             raise Exception('Unknown version encountered {}, no known parser'.format(revision))
 
     @staticmethod
-    def _parse_v1(message: Dict) -> list:
+    def _parse_v1(message: Dict) -> Dict:
         payload = message['payload']
 
         parsed_payload = dict()
