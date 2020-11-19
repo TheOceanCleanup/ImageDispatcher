@@ -30,21 +30,21 @@ spec:
             secretKeyRef:
               name: tss-servicebus
               key: connection_string
-          - name: AZURE_STORAGE_CONNECTION_STRING
-            valueFrom:
-              secretKeyRef:
-                name: storage-account
-                key: connection_string
-          - name: TSS_API_KEY
-            valueFrom:
-              secretKeyRef:
-                name: tss-image-dispatcher
-                key: AUTHENTICATION_KEY
-          - name: TSS_API_SECRET
-            valueFrom:
-              secretKeyRef:
-                name: tss-image-dispatcher
-                key: AUTHENTICATION_SECRET
+        - name: AZURE_STORAGE_CONNECTION_STRING
+          valueFrom:
+            secretKeyRef:
+              name: storage-account
+              key: connection_string
+        - name: TSS_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: tss-image-dispatcher
+              key: AUTHENTICATION_KEY
+        - name: TSS_API_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: tss-image-dispatcher
+              key: AUTHENTICATION_SECRET
         envFrom:
         - configMapRef:
             name: image-dispatcher-env
@@ -57,4 +57,4 @@ metadata:
 data:
   SB_TOPIC_NAME: river-image
   SB_SUBSCRIPTION_NAME: river-image-subscription
-  AZURE_STORAGE_CONTAINER_NAME=attachments
+  AZURE_STORAGE_CONTAINER_NAME: attachments
