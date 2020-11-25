@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: image-dispatcher
-        image: tocacr.azurecr.io/image-dispatcher:1.0.0
+        image: tocacr.azurecr.io/image-dispatcher:1.0.1
         env:
         - name: LOGLEVEL
           value: DEBUG
@@ -56,5 +56,5 @@ metadata:
    namespace: staging
 data:
   SB_TOPIC_NAME: river-image
-  SB_SUBSCRIPTION_NAME: river-image-subscription
+  SB_SUBSCRIPTION_NAME: jayke-test-subscription
   AZURE_STORAGE_CONTAINER_NAME: attachments
