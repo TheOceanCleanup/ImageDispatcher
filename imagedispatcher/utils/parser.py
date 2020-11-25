@@ -8,7 +8,7 @@ class Parser:
     @staticmethod
     def parse(message: Dict) -> Dict:
         revision = message.get('revision', None)
-        if revision == 'v1':
+        if revision in ['v1', 'v1.1']:
             return Parser._parse_v1(message)
         else:
             raise Exception('Unknown version encountered {}, no known parser'.format(revision))
