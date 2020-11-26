@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: image-dispatcher
-        image: tocacr.azurecr.io/image-dispatcher:1.0.1
+        image: tocacr.azurecr.io/image-dispatcher:1.0.2
         env:
         - name: LOGLEVEL
           value: DEBUG
