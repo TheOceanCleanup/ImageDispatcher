@@ -73,7 +73,7 @@ def parse_messages():
                             'model': model,
                             'version': version
                         },
-                        'bouding_boxes': result
+                        'bounding_boxes': result
                     },
                     'type': 'ai-result',
                     'revision': 'v1'
