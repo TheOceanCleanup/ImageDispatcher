@@ -55,6 +55,6 @@ metadata:
    name: image-dispatcher-env
    namespace: staging
 data:
-  SB_TOPIC_NAME: river-image
-  SB_SUBSCRIPTION_NAME: jayke-test-subscription
+  SB_TOPIC_NAME: enriched-image
+  SB_SUBSCRIPTION_NAME: enriched-image-subscription
   AZURE_STORAGE_CONTAINER_NAME: attachments
