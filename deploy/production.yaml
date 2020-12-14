@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: image-dispatcher
-  namespace: staging
+  namespace: production
   labels:
     app: image-dispatcher
 spec:
@@ -24,7 +24,7 @@ spec:
         - name: CLUSTER_HOST
           value: "http://40.69.216.166"
         - name: TSS_URL
-          value: "https://ts.staging.toc.yt"
+          value: "https://ts.toc.yt"
         - name: SB_CONNECTION
           valueFrom:
             secretKeyRef:
@@ -53,7 +53,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
    name: image-dispatcher-env
-   namespace: staging
+   namespace: production
 data:
   SB_TOPIC_NAME: enriched-image
   SB_SUBSCRIPTION_NAME: image-dispatcher-subscription
