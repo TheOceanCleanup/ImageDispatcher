@@ -9,7 +9,7 @@ spec:
   selector:
     matchLabels:
       app: image-dispatcher
-  replicas: 1
+  replicas: 3
   template:
     metadata:
       labels:
@@ -52,8 +52,8 @@ spec:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-   name: image-dispatcher-env
-   namespace: production
+  name: image-dispatcher-env
+  namespace: production
 data:
   SB_TOPIC_NAME: enriched-image
   SB_SUBSCRIPTION_NAME: image-dispatcher-subscription
