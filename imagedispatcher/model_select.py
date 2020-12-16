@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 
 
 def select_service(message):
@@ -16,7 +16,8 @@ def select_service(message):
                         (<service name>, <model name>, <model_version>)
     """
     # TODO make actual differentation here
-    if message["timestamp"].hour < 12:  # Morning only
+    timestamp = datetime.strptime(message['timestamp'], "%Y-%m-%dT%H:%M:%S")
+    if timestamp.hour < 12:  # Morning only
         return ("yolo-v4", "yolo_v4", 2)
     else:
         return ("yolo-v4", "yolo_v4", 2)

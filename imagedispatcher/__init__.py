@@ -25,7 +25,6 @@ def parse_messages():
     storage_client = StorageClient(
         STORAGE_CONNECTION_STRING, STORAGE_CONTAINER_NAME)
 
-    print("Listening")
     for message in message_bus_client.get_messages():
         try:
             item = Parser.parse(message.body())
