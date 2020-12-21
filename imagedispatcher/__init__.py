@@ -1,4 +1,4 @@
-from .utils import create_logger, MessageBusWrapper, Parser, StorageClient
+from .utils import create_logger, MessageBusWrapper, Parser, StorageClient, Sentry
 from .model_select import select_service
 import os
 import json
@@ -9,6 +9,12 @@ logger = create_logger(os.getenv('LOGLEVEL', 'DEBUG'), __name__)
 
 
 def parse_messages():
+
+    # Configure Sentry
+    sentry = Sentry("https://abeb55d9752a49bbbd99e5a92d33d107@o486030.ingest.sentry.io/5561411")
+    sentry.add_sensitive_value(os.environ['SB_CONNECTION'])
+    sentry.add_sensitive_value(os.environ['AZURE_STORAGE_CONNECTION_STRING'])
+    sentry.add_sensitive_value(os.environ['TSS_API_SECRET'])
 
     SERV_BUS_CONNECTION_STRING = os.environ['SB_CONNECTION']
     TOPIC_NAME = os.environ['SB_TOPIC_NAME']
@@ -27,6 +33,9 @@ def parse_messages():
 
     for message in message_bus_client.get_messages():
         try:
+            # Forget about previous message
+            sentry.clear_breadcrumbs()
+
             item = Parser.parse(message.body())
 
             for image in item['image_paths']:

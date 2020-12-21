@@ -25,7 +25,7 @@ else
   export GIT_STATUS="clean"
 fi
 
-docker build -t image-dispatcher .
+docker build -t image-dispatcher --build-arg=GIT_COMMIT=$GIT_COMMIT --build-arg=GIT_BRANCH=${GIT_BRANCH}-${GIT_STATUS} --build-arg=VERSION=$version .
 
 if [[ $GIT_STATUS == 'clean' ]]; then
   git tag -a $version -m "Tagged release $version"
