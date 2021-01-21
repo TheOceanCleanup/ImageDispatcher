@@ -18,6 +18,6 @@ def select_service(message):
     # TODO make actual differentation here
     timestamp = datetime.strptime(message['timestamp'], "%Y-%m-%dT%H:%M:%S")
     if timestamp.hour < 12:  # Morning only
-        return ("yolo-v4", "yolo_v4", 2)
+        return ("yolov5", "yolov5", 3)
     else:
-        return ("yolo-v4", "yolo_v4", 2)
+        return ("yolov5", "yolov5", 3)
