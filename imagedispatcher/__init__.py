@@ -1,7 +1,7 @@
 from .utils import create_logger, MessageBusWrapper, Parser, StorageClient, Sentry
 from .model_select import select_service
+from .send_to_cluster import perform_inference
 import os
-import json
 import requests
 import datetime
 
@@ -21,7 +21,6 @@ def parse_messages():
     SUBSCRIPTION_NAME = os.environ['SB_SUBSCRIPTION_NAME']
     STORAGE_CONNECTION_STRING = os.environ['AZURE_STORAGE_CONNECTION_STRING']
     STORAGE_CONTAINER_NAME = os.environ['AZURE_STORAGE_CONTAINER_NAME']
-    CLUSTER_HOST = os.environ['CLUSTER_HOST']
     TSS_URL = os.environ['TSS_URL']
     TSS_API_KEY = os.environ['TSS_API_KEY']
     TSS_API_SECRET = os.environ['TSS_API_SECRET']
@@ -50,13 +49,10 @@ def parse_messages():
                 service, model, version = select_service(item)
 
                 # Send image to Endpoint
-                r = requests.post(
-                    f'{CLUSTER_HOST}/api/v1/service/{service}/score',
-                    data=image_data
-                )
-                if r.status_code == 200:
+                try:
+                    r = perform_inference(service, image_data)
                     result = r.json()
-                else:
+                except Exception as e:
                     msg = "Failed to perform inference"
                     logger.error(msg)
                     message.failure(msg)
