@@ -5,11 +5,11 @@ import os
 CLUSTER_HOST = os.environ['CLUSTER_HOST']
 
 
-@retry(stop_max_attempt_number=5, wait_fixed=30000)
+@retry(stop_max_attempt_number=5, wait_fixed=45000)
 def perform_inference(service, image_data):
     """
     Calls the cluster endpoint and retries on a bad status.
-    It retries a maximum of 5 times with a fixed delay of 30 seconds
+    It retries a maximum of 5 times with a fixed delay of 45 seconds
     """
     # Perform inference
     result = requests.post(

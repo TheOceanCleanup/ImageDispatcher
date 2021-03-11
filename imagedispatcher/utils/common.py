@@ -88,8 +88,8 @@ class MessageWrapper:
         :return:
         """
         try:
-            logger.error('Failed to handle message:')
-            logger.error("".join(el.decode("UTF-8") for el in self.raw_message.body))
+            logger.info('Failed to handle message:')
+            logger.info("".join(el.decode("UTF-8") for el in self.raw_message.body))
             logger.exception(e)
             self.raw_message.dead_letter(traceback.format_exc())
         except Exception as e:
